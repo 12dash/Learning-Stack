@@ -1,0 +1,115 @@
+.in-row{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-bottom: ridge;
+}
+h2{
+    padding-bottom: 20px;
+}
+footer{
+    padding-top: 2%;
+    padding-bottom: 2px;
+    background-color: #0001;
+    height: 100%;
+}
+body{
+    padding-top:50px;
+    z-index : 0
+}
+.jumbotron{
+    background-image: url(https://image.freepik.com/free-photo/dark-grey-black-slate-texture-with-high-resolution-background-natural-black-stone-wall_38607-306.jpg);
+    color:white;
+}
+.my-auto{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: left;
+}
+
+address{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: medium;
+}
+
+li{
+    margin-top:8px;
+}
+.links{
+    font-weight: 600;
+    padding: 2%;
+}
+.Copyright{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color : #0008
+}
+header{
+    margin-bottom: 0px ;
+    padding-bottom: 0px;
+}
+.nav-item{
+    margin-left: 50px;
+}
+
+i{
+    padding:2px;
+}
+
+.links a{
+    margin : 10px;    
+}
+.links i{
+    padding-bottom: 5px;
+}
+.in-row p{
+    line-height: 40px;
+    font-weight: 200;
+    font-size: large;
+}
+.my-auto h2 {
+    color: #096F77;
+    line-height: 55px;
+    letter-spacing: 2px;
+}
+.in-row h2{
+    letter-spacing: 2px;
+}
+.jumbotron p{
+    font-size: large;
+    font-weight: 100;
+    line-height: 35px;
+}
+
+.foot-head{
+    margin-bottom : 30px;
+}
+.reser .form-check-inline{
+    margin-right :63px
+}
+.reser .form-group{
+    margin-bottom: 40px;
+}
+
+.modal .form-row{
+    margin-top: 20px;
+}
+.carousel{
+    background: #000;
+}
+.carousel-item{
+    height: 300px
+}
+
+.carousel-item img{
+   min-width: 100%;
+}
+
+.carousel-caption{
+    font-size: x-large;
+    color: white;
+}
+
+#carousel-button{
+    right: 0px;
+    position: absolute;
+    bottom: 0px;
+    padding:10px;
+}

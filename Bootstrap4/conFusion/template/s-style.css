@@ -1,0 +1,27 @@
+#loginModal {
+  margin: 5px;
+}
+#loginModal .modal-header {
+  background-color: #000;
+  color: white;
+}
+#loginModal .modal-header .modal-title {
+  letter-spacing: 10px;
+}
+#loginModal .modal-body {
+  background-color: #000a;
+  color: white;
+}
+
+#reserveModal .modal-header {
+  background-color: #000;
+  color: white;
+}
+#reserveModal .modal-header .modal-title {
+  letter-spacing: 10px;
+}
+
+#reserveModal .modal-body {
+  background-color: #000a;
+  color: white;
+}
