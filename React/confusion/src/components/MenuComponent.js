@@ -1,36 +1,35 @@
-import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import React from 'react';
+import { Card, CardImg, CardTitle } from 'reactstrap';
 import "./Menu.css";
 
 
-class Menu extends Component {
+function RenderMenuItem({ dish, onClick }) {
+    return (
+        <Card style={{ backgroundColor: '#333' }} onClick={() => onClick(dish.id)}>
+            <CardImg width="100%" src={dish.image} alt={dish.name} />
+            <CardTitle style={{ margin: "10px", padding: "5px", color: "white" }}>{dish.name}</CardTitle>
+        </Card>
+    );
+}
 
-    constructor(props) {
-        super(props);
+const Menu = (props) => {
 
-       
-    }   
-
-    render() {
-        const menu = this.props.dishes.map(dish => {
-            return (
-                <div key={dish.id} className="col-12 col-md-5 m-1">
-                    <Card style={{ backgroundColor: '#333' }} onClick={() => this.props.onClick(dish.id)}>
-                        <CardImg width="100%" src={dish.image} alt={dish.name} />
-                        <CardTitle style={{ margin: "10px", padding: "5px", color: "white" }}>{dish.name}</CardTitle>
-                    </Card>
-                </div>
-            );
-        });
-
+    const menu = props.dishes.map(dish => {
         return (
-            <div className="container">
-                <div className="row">
-                    {menu}
-                </div>               
+            <div key={dish.id} className="col-12 col-md-5 m-1">
+                <RenderMenuItem dish={dish} onClick={props.onClick} />
             </div>
         );
-    }
+    });
+
+    return (
+        <div className="container">
+            <div className="row">
+                {menu}
+            </div>
+        </div>
+    );
 
 }
+
 export default Menu;

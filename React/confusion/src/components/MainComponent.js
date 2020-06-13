@@ -32,7 +32,7 @@ class Main extends Component {
                 <div className="container">
                     <Menu dishes={this.state.dishes}
                         onClick={(dishId) => this.onDishSelect(dishId)} />
-                    <DishDetailComponent dish={this.state.dishes.filter((dish) => dish.id == this.state.selectedDish)[0]} />
+                    <DishDetailComponent dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
                 </div>
 
             </div>
