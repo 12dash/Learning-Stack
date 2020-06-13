@@ -1,0 +1,15 @@
+.media-heading{
+    letter-spacing: 2px;
+    font-size: 400;    
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.description{
+    font-size : medium;
+    font-weight: 200;
+    line-height: 40px;
+}
+
+.media-object{
+    border-radius: 20%;
+}
