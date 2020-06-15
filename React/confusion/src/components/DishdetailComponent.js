@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
-class DishdetailComponent extends Component {
+class Dishdetail extends Component {
 
     renderComments(comments) {
         const com = comments.map(comment => {
@@ -52,10 +52,10 @@ class DishdetailComponent extends Component {
     render() {
         return (
             <div>
-                {this.renderDish(this.props.dish)}
+                {this.renderDish(this.props.dish)}               
             </div>
 
         );
     }
 }
-export default DishdetailComponent
+export default Dishdetail
