@@ -1,0 +1,30 @@
+.btn{
+    margin-left: 5px;  
+}
+i{
+    padding:2px;
+}
+.links{
+    margin-left: 20px;
+    line-height: 30px;
+}
+
+h4{
+    letter-spacing: 5px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;    
+}
+address{
+    margin-left: 20px;
+    line-height: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+address .fa{
+    margin-left:20px
+}
+.copy{
+    margin-top: 20px;
+}
+.copy p{
+    font-weight: 200;
+    letter-spacing: 3px;
+}

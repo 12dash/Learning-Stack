@@ -1,19 +1,18 @@
 import React from 'react';
-import { Card, CardImg, CardTitle } from 'reactstrap';
-
+import { Card, CardImg, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import Dishdetail from './DishdetailComponent';
+
 import "./Menu.css";
 
 
-function onClick(props){
-    props.selectedDish = props.dish
-}
-
-function RenderMenuItem({ dish}) {
+function RenderMenuItem({ dish }) {
     return (
-        <Card style={{ backgroundColor: '#333' }} onClick = {onClick(dish)}>
-            <CardImg width="100%" src={dish.image} alt={dish.name} />
-            <CardTitle style={{ margin: "10px", padding: "5px", color: "white" }}>{dish.name}</CardTitle>
+        <Card style={{ backgroundColor: '#333', marginBottom : "2px" , letterSpacing : "5px"}} >
+            <Link to={`/menu/${dish.id}`}>
+                <CardImg height = "400" src={dish.image} alt={dish.name} />
+                <CardTitle style={{ margin: "10px", padding: "5px", color: "white" }}>{dish.name}</CardTitle>
+            </Link>
         </Card>
     );
 }
@@ -31,10 +30,20 @@ const Menu = (props) => {
     return (
         <div className="container">
             <div className="row">
-                {menu} 
-                {props.selectedDish ? <Dishdetail dish = {props.selectedDish}></Dishdetail>: null}               
+                <Breadcrumb style = {{marginTop : "20px"}}>
+                    <BreadcrumbItem> <Link to='/home'>Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Menu</BreadcrumbItem>
+                </Breadcrumb>
+                <div className='col-12'>
+                    <h2>Menu</h2>
+                    <hr />
+                </div>
             </div>
-            
+            <div className="row">
+                {menu}
+
+            </div>
+
         </div>
     );
 

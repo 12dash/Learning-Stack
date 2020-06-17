@@ -1,0 +1,17 @@
+.cardTitle{
+    letter-spacing: 2px;
+    font-size: x-large;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;    
+}
+.cards{
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+
+.Comments{
+    line-height: 30px;   
+    margin-top: 10px;
+    border-style: solid;
+    text-align: center;
+    padding-top: 10px;
+}
