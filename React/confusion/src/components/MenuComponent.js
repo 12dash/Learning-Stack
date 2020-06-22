@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, CardImg, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import Dishdetail from './DishdetailComponent';
 
 import "./Menu.css";
 

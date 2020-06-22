@@ -7,7 +7,7 @@ function RenderLeader(props) {
     return (
         <div className="row align-items-center leader">
             <div className="col-12 col-sm-2">
-                <img src={props.leader.image}></img>
+                <img src={props.leader.image} alt = "Leader"></img>
             </div>
             <div className="col-12 col-sm-9">
                 <h3>{props.leader.name}</h3>
