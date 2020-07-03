@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Modal, Button, ModalHeader, ModalBody, Label} from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Modal, Button, ModalHeader, ModalBody, Label } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 
 import './DishDetail.css';
+import { addComent } from '../redux/ActionCreators';
 
 
 const required = (val) => val && val.length;
@@ -26,8 +28,9 @@ class SubmitComment extends Component {
             isModalOpen: !this.state.isModalOpen
         });
     }
-    handleSubmit(value) {
-        alert("You have Submitted the form :))"+ JSON.stringify(value));
+    handleSubmit(values) {
+        alert("You have Submitted the form :))" + JSON.stringify(values));
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     render() {
@@ -68,8 +71,6 @@ class SubmitComment extends Component {
                                     }}
                                 >
                                 </Errors>
-
-
                             </div>
                             <div className="form-group" >
                                 <Label htmlFor="message" >Comment</Label>
@@ -84,7 +85,6 @@ class SubmitComment extends Component {
                             <Button type="submit" value="submit" color="primary">
                                 Submit
                             </Button>
-
                         </LocalForm>
                     </ModalBody>
                 </Modal>
@@ -115,8 +115,26 @@ class Dishdetail extends Component {
         })
         return com;
     }
-    renderDish(dish, comment) {
-        if (dish != null) {
+    renderDish() {
+        if (this.props.isLoading) {
+            return(
+                <div className = "container">
+                    <div className = "row">
+                        <Loading />
+                    </div>
+                </div>
+            )            
+        }
+        else if(this.props.errMess){
+            return(
+                <div className = "container">
+                    <div className = "row">
+                        <h4>{this.props.errMess}</h4>
+                    </div>
+                </div>
+            )
+        }
+        if (this.props.dish != null) {
             return (
                 <div className="row">
                     <div className="col-12 col-md-5">
@@ -131,11 +149,9 @@ class Dishdetail extends Component {
                     <div className="col-12 col-md-6">
                         <h4 style={{ letterSpacing: "2px" }}>Comments</h4>
                         <hr />
-                        {this.renderComments(comment)}
-                        <SubmitComment />
-
+                        {this.renderComments(this.props.comment)}
+                        <SubmitComment addComment={this.props.addComment} />
                     </div>
-
                 </div>
             );
         }
@@ -151,10 +167,10 @@ class Dishdetail extends Component {
                     <Breadcrumb style={{ marginTop: "20px" }}>
                         <BreadcrumbItem> <Link to='/home'>Home</Link></BreadcrumbItem>
                         <BreadcrumbItem><Link to='/menu'>Menu</Link></BreadcrumbItem>
-                        <BreadcrumbItem active>{this.props.dish.name}</BreadcrumbItem>
+                        <BreadcrumbItem active>{this.props.name}</BreadcrumbItem>
                     </Breadcrumb>
                     <div className='col-12'>
-                        <h3>{this.props.dish.name}</h3>
+                        <h3>{this.props.name}</h3>
                         <hr />
                     </div>
                 </div>
