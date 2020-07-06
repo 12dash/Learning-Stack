@@ -6,6 +6,7 @@ import { Loading } from './LoadingComponent';
 
 import './DishDetail.css';
 import { addComent } from '../redux/ActionCreators';
+import { baseUrl } from '../shared/baseUrl';
 
 
 const required = (val) => val && val.length;
@@ -139,7 +140,7 @@ class Dishdetail extends Component {
                 <div className="row">
                     <div className="col-12 col-md-5">
                         <Card className="cards">
-                            <CardImg width="100%" src={this.props.dish.image} alt={this.props.dish.name} />
+                            <CardImg width="100%" src={baseUrl + this.props.dish.image} alt={this.props.dish.name} />
                             <CardBody>
                                 <CardTitle className="cardTitle">{this.props.dish.name}</CardTitle>
                                 <CardText>{this.props.dish.description}</CardText>

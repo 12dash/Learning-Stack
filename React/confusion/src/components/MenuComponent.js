@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 
 import "./Menu.css";
 import { Loading } from "./LoadingComponent";
+import {baseUrl} from '../shared/baseUrl';
+
 
 function RenderMenuItem({ dish }) {
     return (
         <Card style={{ backgroundColor: '#333', marginBottom: "2px", letterSpacing: "5px" }} >
             <Link to={`/menu/${dish.id}`}>
-                <CardImg height="400" src={dish.image} alt={dish.name} />
+                <CardImg height="400" src={baseUrl + dish.image} alt={dish.name} />
                 <CardTitle style={{ margin: "10px", padding: "5px", color: "white" }}>{dish.name}</CardTitle>
             </Link>
         </Card>
