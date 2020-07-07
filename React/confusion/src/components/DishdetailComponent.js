@@ -5,7 +5,6 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 
 import './DishDetail.css';
-import { addComent } from '../redux/ActionCreators';
 import { baseUrl } from '../shared/baseUrl';
 
 
@@ -31,7 +30,8 @@ class SubmitComment extends Component {
     }
     handleSubmit(values) {
         alert("You have Submitted the form :))" + JSON.stringify(values));
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        console.log((this.props.dish));
+       this.props.postComment(this.props.dish.id, values.rating, values.author, values.comment);
     }
 
     render() {
@@ -44,7 +44,10 @@ class SubmitComment extends Component {
                         <LocalForm onSubmit={(values) => this.handleSubmit(values)} style={{ padding: "10px" }}>
                             <div className="form-group" >
                                 <Label htmlFor="rating">Rating</Label>
-                                <Control.select model=".rating" name="rating" className="form-control" >
+                                <Control.select model=".rating" 
+                                    id = "rating" 
+                                    name = "rating" 
+                                    className="form-control" >
                                     <option>1 </option>
                                     <option>2</option>
                                     <option>3 </option>
@@ -53,8 +56,10 @@ class SubmitComment extends Component {
                                 </Control.select>
                             </div>
                             <div className="form-group" >
-                                <Label htmlFor="firstname">Your Name </Label>
-                                <Control.text model=".firstname" id="firstname" name="firstname"
+                                <Label htmlFor="author">Your Name </Label>
+                                <Control.text model=".author" 
+                                    id="author"
+                                    name="author"
                                     className="form-control"
                                     placeholder="Your Name"
                                     validators={{
@@ -63,7 +68,7 @@ class SubmitComment extends Component {
                                 />
                                 <Errors
                                     className="text-danger"
-                                    model=".firstname"
+                                    model=".author"
                                     show="touched"
                                     messages={{
                                         require: "Required",
@@ -74,11 +79,11 @@ class SubmitComment extends Component {
                                 </Errors>
                             </div>
                             <div className="form-group" >
-                                <Label htmlFor="message" >Comment</Label>
+                                <Label htmlFor="comment" >Comment</Label>
                                 <Control.textarea
-                                    model=".message"
-                                    id="message"
-                                    name="message"
+                                    model=".comment"
+                                    id="comment"
+                                    name="comment"
                                     placeholder="Please enter your comment"
                                     rows={6}
                                     className="form-control" />
@@ -151,7 +156,7 @@ class Dishdetail extends Component {
                         <h4 style={{ letterSpacing: "2px" }}>Comments</h4>
                         <hr />
                         {this.renderComments(this.props.comment)}
-                        <SubmitComment addComment={this.props.addComment} />
+                        <SubmitComment postComment={this.props.postComment} dish = {this.props.dish}/>
                     </div>
                 </div>
             );
