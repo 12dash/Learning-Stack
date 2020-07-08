@@ -6,6 +6,7 @@ import { Loading } from './LoadingComponent';
 
 import './DishDetail.css';
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 
 const required = (val) => val && val.length;
@@ -31,7 +32,7 @@ class SubmitComment extends Component {
     handleSubmit(values) {
         alert("You have Submitted the form :))" + JSON.stringify(values));
         console.log((this.props.dish));
-       this.props.postComment(this.props.dish.id, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dish.id, values.rating, values.author, values.comment);
     }
 
     render() {
@@ -44,9 +45,9 @@ class SubmitComment extends Component {
                         <LocalForm onSubmit={(values) => this.handleSubmit(values)} style={{ padding: "10px" }}>
                             <div className="form-group" >
                                 <Label htmlFor="rating">Rating</Label>
-                                <Control.select model=".rating" 
-                                    id = "rating" 
-                                    name = "rating" 
+                                <Control.select model=".rating"
+                                    id="rating"
+                                    name="rating"
                                     className="form-control" >
                                     <option>1 </option>
                                     <option>2</option>
@@ -57,7 +58,7 @@ class SubmitComment extends Component {
                             </div>
                             <div className="form-group" >
                                 <Label htmlFor="author">Your Name </Label>
-                                <Control.text model=".author" 
+                                <Control.text model=".author"
                                     id="author"
                                     name="author"
                                     className="form-control"
@@ -104,13 +105,17 @@ class Dishdetail extends Component {
         const com = comments.map(comment => {
             if (comments != null) {
                 return (
-                    <ul key={comment.id} className="list-unstyled Comments">
-                        <li>
-                            {comment.author},
+                    <Stagger in>
+                        <ul key={comment.id} className="list-unstyled Comments">
+                            <Fade in>
+                                <li>
+                                    {comment.author},
                         {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(comment.date)))}
-                        </li>
-                        <li>{comment.comment}</li>
-                    </ul>
+                                </li>
+                                <li>{comment.comment}</li>
+                            </Fade>
+                        </ul>
+                    </Stagger>
                 );
             }
             else {
@@ -123,18 +128,18 @@ class Dishdetail extends Component {
     }
     renderDish() {
         if (this.props.isLoading) {
-            return(
-                <div className = "container">
-                    <div className = "row">
+            return (
+                <div className="container">
+                    <div className="row">
                         <Loading />
                     </div>
                 </div>
-            )            
+            )
         }
-        else if(this.props.errMess){
-            return(
-                <div className = "container">
-                    <div className = "row">
+        else if (this.props.errMess) {
+            return (
+                <div className="container">
+                    <div className="row">
                         <h4>{this.props.errMess}</h4>
                     </div>
                 </div>
@@ -144,19 +149,24 @@ class Dishdetail extends Component {
             return (
                 <div className="row">
                     <div className="col-12 col-md-5">
-                        <Card className="cards">
-                            <CardImg width="100%" src={baseUrl + this.props.dish.image} alt={this.props.dish.name} />
-                            <CardBody>
-                                <CardTitle className="cardTitle">{this.props.dish.name}</CardTitle>
-                                <CardText>{this.props.dish.description}</CardText>
-                            </CardBody>
-                        </Card>
+                        <FadeTransform in
+                            transformProps={{
+                                exitTransform: 'scale(0.5) translateY(-50%)'
+                            }}>
+                            <Card className="cards">
+                                <CardImg width="100%" src={baseUrl + this.props.dish.image} alt={this.props.dish.name} />
+                                <CardBody>
+                                    <CardTitle className="cardTitle">{this.props.dish.name}</CardTitle>
+                                    <CardText>{this.props.dish.description}</CardText>
+                                </CardBody>
+                            </Card>
+                        </FadeTransform>
                     </div>
                     <div className="col-12 col-md-6">
                         <h4 style={{ letterSpacing: "2px" }}>Comments</h4>
                         <hr />
                         {this.renderComments(this.props.comment)}
-                        <SubmitComment postComment={this.props.postComment} dish = {this.props.dish}/>
+                        <SubmitComment postComment={this.props.postComment} dish={this.props.dish} />
                     </div>
                 </div>
             );
