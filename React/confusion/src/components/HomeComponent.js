@@ -55,7 +55,10 @@ function Home(props) {
                 </div>
 
                 <div className="col-12 col-md m-1">
-                    <RenderCard item={props.leader} />
+                    {console.log(props.leadersLoading)}
+                    <RenderCard item={props.leader} 
+                     isLoading = {props.leadersLoading}
+                     errMess = {props.leaderErrMess}/>
                 </div>
 
             </div>

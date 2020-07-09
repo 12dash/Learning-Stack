@@ -1,13 +1,16 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 import "./about.css"
 
 function RenderLeader(props) {
     return (
+        <Fade in>
         <div className="row align-items-center leader">
             <div className="col-12 col-sm-2">
-                <img src={props.leader.image} alt = "Leader"></img>
+                <img src={baseUrl + props.leader.image} alt="Leader"></img>
             </div>
             <div className="col-12 col-sm-9">
                 <h3>{props.leader.name}</h3>
@@ -15,21 +18,24 @@ function RenderLeader(props) {
                 <p>{props.leader.description}</p>
             </div>
         </div>
+         </Fade >
     )
 }
 
 function About(props) {
     console.log(props.leaders)
-    const leaders = props.leaders.map((leader) => {
+    const leaders = props.leaders.leaders.map((leader) => {
         return (
-            <RenderLeader leader={leader}/>
+            <Stagger in>
+                <RenderLeader leader={leader} />
+            </Stagger>
         );
     });
 
     return (
         <div className="container">
             <div className="row">
-                <Breadcrumb style = {{marginTop : "20px"}}>
+                <Breadcrumb style={{ marginTop: "20px" }}>
                     <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
                     <BreadcrumbItem active>About Us</BreadcrumbItem>
                 </Breadcrumb>
