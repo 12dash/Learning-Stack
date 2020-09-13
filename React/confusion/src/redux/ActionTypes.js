@@ -13,3 +13,5 @@ export const PROMOS_FAILED = 'PROMOS_FAILED';
 export const LEADERS_LOADING  = 'LEADER_LOADING';
 export const LEADERS_FAILED = 'LEADERS_FAILED';
 export const ADD_LEADERS = 'ADD_LEADERS';
+
+export const POST_FEEDBACK = 'POST_FEEDBACK';

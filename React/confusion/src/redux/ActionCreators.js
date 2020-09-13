@@ -8,7 +8,6 @@ export const addComment = (comment) => ({
 });
 
 export const postComment = (dishId, rating, author, comment) => (dispatch) => {
-
     const newComment = {
         dishId: dishId,
         rating: rating,
@@ -40,9 +39,9 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
                 var errmess = new Error(error.message);
                 throw errmess;
             })
-            .then(response => response.json())
-            .then(response => dispatch(addComment(response)))
-            .catch(error => {console.log('Post Comment ', error.message) ; alert("Your Comment could not be posted\n Error : ",error.message);})
+        .then(response => response.json())
+        .then(response => dispatch(addComment(response)))
+        .catch(error => { console.log('Post Comment ', error.message); alert("Your Comment could not be posted\n Error : ", error.message); })
 
 };
 
@@ -143,7 +142,7 @@ export const addPromos = (promos) => ({
     payload: promos
 });
 
-export const fetchLeaders= () => (dispatch) => {
+export const fetchLeaders = () => (dispatch) => {
     dispatch(leadersLoading(true));
     console.log("Fetching leaders");
     return fetch(baseUrl + 'leaders')
@@ -176,3 +175,54 @@ export const addLeaders = (leaders) => ({
     type: ActionTypes.ADD_LEADERS,
     payload: leaders
 });
+export const postFeedback = (
+    firstname,
+    lastname,
+    telnum,
+    email,
+    agree,
+    contactType,
+    message) => dispatch => {
+    const newFeedback = {
+        firstname: firstname,
+        lastname: lastname,
+        telnum: telnum,
+        email: email,
+        agree: agree,
+        contactType: contactType,
+        message: message
+    };
+
+    return fetch(baseUrl + "feedback", {
+        method: "POST",
+        body: JSON.stringify(newFeedback),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    })
+        .then(
+            response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    var error = new Error(
+                        "Error " + response.status + ": " + response.statusText
+                    );
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                throw error;
+            }
+        )
+        .then(response => response.json())
+        .then(response =>
+            alert("Thank for submitting feedback!" + JSON.stringify(response))
+        )
+        .catch(error => {
+            console.log("post feedbacks", error.message);
+            alert("Your feedback could not be posted!\nError: " + error.message);
+        });
+};
