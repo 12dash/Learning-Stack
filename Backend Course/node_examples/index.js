@@ -2,14 +2,16 @@ var rect = require('./rectangle');
 
 function solveReact(l,b) {
     console.log("Solving for reactangle with l = "+l+" and b = "+b);
-
-    if (l<=0 || b<= 0){
-        console.log("Rectangle dimension should be greater than 0");
-    }
-    else{
-        console.log("The area of the rectangle is "+ rect.area(l,b));
-        console.log("The perimeter of the rectangle is "+ rect.perimeter(l,b));
-    }
+    rect(l,b, (err, rectangle) => {
+        if (err){
+            console.log("Error encountered : ", err.message);
+        }
+        else{
+            console.log("The area of rectangle : " + rectangle.area())
+            console.log("The perimeter of rectangle : " + rectangle.perimeter())
+        }
+    })
+    console.log("The statment is after the console.log")
 }
 
 solveReact(2,4);
