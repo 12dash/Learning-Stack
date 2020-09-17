@@ -11,7 +11,7 @@ function solveReact(l,b) {
             console.log("The perimeter of rectangle : " + rectangle.perimeter())
         }
     })
-    console.log("The statment is after the console.log")
+    console.log("The statment is after the console.log");
 }
 
 solveReact(2,4);
