@@ -8,25 +8,38 @@ const connect = mongoose.connect(url);
 connect.then((db) => {
     console.log("Correctly connected to the server");
 
-    var newDish = Dishes({
+    Dishes.create({
         name: 'Uthapizza',
         description: 'test'
-    });
+    })
+        .then((dish) => {
+            console.log(dish);
+            return Dishes.findByIdAndUpdate(dish._id, {
+                $set: { description: 'Updates Test' }
+                }, { new: true }
+            ).exec();
+        })
+        .then((dish) => {
+            console.log(dish);
 
-    newDish.save()
-    .then((dish)=>{
-        console.log(dish);
-
-        return Dishes.find({}).exec();
-    })
-    .then((dishes) => {
-        console.log(dishes);
-        return Dishes.remove({});
-    })
-    .then(()=>{
-        return mongoose.connection.close();
-    })
-    .catch((err)=>{
-        console.log(err);
-    });
-}); 
+            dish.comments.push({
+                rating: 5,
+                comment: 'I love to eat whatever this dish is!',
+                author: 'SD'
+            });
+            return dish.save();
+        })
+        .then((dish) => {
+            console.log(dish);
+            return Dishes.remove({});
+        })
+        .then(() => {
+            return mongoose.connection.close();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+})
+    .catch((err) => {
+        console.log("Not able to connect to the server");
+    }); 
